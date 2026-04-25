@@ -1,6 +1,9 @@
 <template>
   <h1>Detail ingredients for {{ ingredient }}</h1>
-  <div class="meal-container">
+  <div v-if="pending">
+    <p>Loading...</p>
+  </div>
+  <div v-else class="meal-container">
     <div v-for="meal in meals?.meals" :key="meal.idMeal" class="meal-item" @click="clickDetail(meal.idMeal)">
       <img :src="meal.strMealThumb" :alt="meal.strMeal" loading="lazy">
       {{ meal.strMeal }}
@@ -18,10 +21,12 @@
 const route = useRoute()
 const ingredient = route.params.ingredient
 const meals = ref([])
+const pending = ref(true)
 
 onMounted(async () => {
-  const { data: res } = await useFetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient)
+  const { data: res, pending: loading } = await useFetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient)
   meals.value = res.value || []
+  pending.value = loading.value
 })
 
 function clickDetail(meal_id: string) {
