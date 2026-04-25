@@ -4,6 +4,18 @@ body {
     @apply bg-gray-100;
 }
 
+header {
+    @apply flex flex-row justify-between p-4 shadow-lg bg-white/80 backdrop-blur-md sticky top-0 z-50;
+}
+
+.search {
+    @apply border border-gray-300 px-4 py-2 rounded-md;
+}
+
+.search-input {
+    @apply border-none outline-none;
+}
+
 .ingredient-container,
 .meal-container {
     display: flex;

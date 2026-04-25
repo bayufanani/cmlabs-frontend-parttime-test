@@ -4,7 +4,7 @@
     <p>Loading...</p>
   </div>
   <div v-else class="ingredient-container">
-    <div v-for="ingredient in ingredients?.meals" :key="ingredient.idIngredient" class="ingredient-item"
+    <div v-for="ingredient in filteredIngredients" :key="ingredient.idIngredient" class="ingredient-item"
       @click="clickDetail(ingredient.strIngredient)">
       <img :src="ingredient.strThumb" :alt="ingredient.strIngredient" loading="lazy">
       {{ ingredient.strIngredient }}
@@ -13,6 +13,12 @@
   <NuxtLink to="/detail-ingredients">
     Go to detail ingredients
   </NuxtLink>
+
+  <Teleport to="#search">
+    <div class="search">
+      <input type="text" class="search-input" placeholder="Cari resep..." v-model="search">
+    </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -21,6 +27,12 @@ import type { Ingredient } from '~/domains/ingredients'
 
 const ingredients = ref<ApiResponse<Ingredient>>({ meals: [] })
 const pending = ref(true)
+const search = ref("")
+const filteredIngredients = computed(() => {
+  return ingredients.value.meals.filter((ingredient) => {
+    return ingredient.strIngredient.toLowerCase().includes(search.value.toLowerCase())
+  })
+})
 
 onMounted(async () => {
   const { data: res, pending: loading } = await useFetch<ApiResponse<Ingredient>>("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
