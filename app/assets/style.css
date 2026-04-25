@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+body {
+    @apply bg-gray-100;
+}
+
+.ingredient-container,
+.meal-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    @apply py-4 px-8 mx-auto max-w-[1400px] flex flex-wrap;
+}
+
+.ingredient-item,
+.meal-item {
+    @apply flex flex-col justify-center w-52 items-center p-4 bg-white border border-white hover:border-green-600 shadow-lg transition-all hover:cursor-pointer rounded-md;
+}
+
+.ingredient-item img {
+    @apply w-32 h-32;
+}
