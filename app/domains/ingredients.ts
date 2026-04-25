@@ -1,7 +1,3 @@
-export interface ListIngredientsResponse {
-    meals: Ingredient[];
-}
-
 export interface Ingredient {
     idIngredient: string;
     strIngredient: string;

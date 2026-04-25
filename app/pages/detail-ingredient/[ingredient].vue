@@ -18,14 +18,17 @@
 </template>
 
 <script setup lang="ts">
+import type { ApiResponse } from '~/domains/api-response'
+import type { Meal } from '~/domains/meals'
+
 const route = useRoute()
 const ingredient = route.params.ingredient
-const meals = ref([])
+const meals = ref<ApiResponse<Meal>>({ meals: [] })
 const pending = ref(true)
 
 onMounted(async () => {
-  const { data: res, pending: loading } = await useFetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient)
-  meals.value = res.value || []
+  const { data: res, pending: loading } = await useFetch<ApiResponse<Meal>>("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient)
+  meals.value = res.value || { meals: [] }
   pending.value = loading.value
 })
 

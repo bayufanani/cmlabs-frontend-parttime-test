@@ -16,13 +16,14 @@
 </template>
 
 <script setup lang="ts">
-import type { ListIngredientsResponse } from '~/domains/ingredients'
+import type { ApiResponse } from '~/domains/api-response'
+import type { Ingredient } from '~/domains/ingredients'
 
-const ingredients = ref<ListIngredientsResponse>({ meals: [] })
+const ingredients = ref<ApiResponse<Ingredient>>({ meals: [] })
 const pending = ref(true)
 
 onMounted(async () => {
-  const { data: res, pending: loading } = await useFetch<ListIngredientsResponse>("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+  const { data: res, pending: loading } = await useFetch<ApiResponse<Ingredient>>("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
   ingredients.value = res.value || { meals: [] }
   pending.value = loading.value
 })
