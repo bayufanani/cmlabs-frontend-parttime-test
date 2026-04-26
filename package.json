@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "nuxt generate && cp .nojekyll .output/public/.nojekyll && gh-pages -d .output/public"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
@@ -15,5 +16,8 @@
     "tailwindcss": "^4.2.4",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

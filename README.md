@@ -14,3 +14,4 @@ npm run dev
 aplikasi akan berjalan pada http://localhost:3000
 
 ## Demo aplikasi
+https://sibaydev.com/cmlabs-frontend-parttime-test/

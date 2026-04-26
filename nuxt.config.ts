@@ -11,4 +11,10 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  app: {
+    baseURL: '/cmlabs-frontend-parttime-test/'
+  },
+  nitro: {
+    preset: 'github-pages' // Optimizes build for GitHub Pages
+  }
 })
