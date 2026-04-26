@@ -5,7 +5,7 @@
     </div>
     <div v-else-if="filteredIngredients.length > 0">
       <h1 class="text-2xl text-green-900 font-bold mb-4">List Ingredients</h1>
-      <div class="flex flex-row flex-wrap gap-4">
+      <div class="flex flex-row flex-wrap gap-4 justify-center">
         <div v-for="ingredient in filteredIngredients" :key="ingredient.idIngredient" class="ingredient-item"
           @click="clickDetail(ingredient.strIngredient)">
           <img :src="ingredient.strThumb" :alt="ingredient.strIngredient" loading="lazy">

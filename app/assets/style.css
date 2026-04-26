@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    @apply flex flex-row justify-between p-4 shadow-lg bg-white/80 backdrop-blur-md sticky top-0 z-50;
+    @apply flex flex-col gap-4 md:flex-row justify-between p-4 shadow-lg bg-white/80 backdrop-blur-md sticky top-0 z-50;
 }
 
 .search {
@@ -26,11 +26,11 @@ header {
 
 .ingredient-item,
 .meal-item {
-    @apply flex flex-col justify-center w-52 items-center p-4 bg-white border border-white hover:border-green-600 shadow-lg transition-all hover:cursor-pointer rounded-md;
+    @apply flex flex-col justify-center w-full md:w-1/4 lg:w-1/6 items-center p-4 bg-white border border-white hover:border-green-600 shadow-lg transition-all hover:cursor-pointer rounded-md;
 }
 
 .ingredient-item img {
-    @apply w-32 h-32;
+    @apply md:w-32 md:h-32;
 }
 
 .recipe-category,
