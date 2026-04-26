@@ -43,9 +43,6 @@
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
-            <NuxtLink to="/">
-                Back to home
-            </NuxtLink>
         </div>
     </div>
 </template>

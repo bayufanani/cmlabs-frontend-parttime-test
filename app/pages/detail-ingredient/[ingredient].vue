@@ -19,12 +19,6 @@
   <Teleport to="#search">
     <Filter v-model="search" />
   </Teleport>
-  <NuxtLink to="/detail-meals">
-    Go to detail meals
-  </NuxtLink>
-  <NuxtLink to="/">
-    Back to home
-  </NuxtLink>
 </template>
 
 <script setup lang="ts">

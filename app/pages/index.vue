@@ -17,9 +17,6 @@
       <p class="text-center font-bold text-2xl text-green-900">Ingredient not found</p>
     </div>
   </div>
-  <NuxtLink to="/detail-ingredients">
-    Go to detail ingredients
-  </NuxtLink>
 
   <Teleport to="#search">
     <Filter v-model="search" />
