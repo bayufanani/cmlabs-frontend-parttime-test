@@ -16,7 +16,7 @@
 
   <Teleport to="#search">
     <div class="search">
-      <input type="text" class="search-input" placeholder="Cari resep..." v-model="search">
+      <input type="text" class="search-input" placeholder="Filter ingredients..." v-model="search">
     </div>
   </Teleport>
 </template>
