@@ -1,12 +1,19 @@
 <template>
-  <h1>Detail ingredients for {{ ingredient }}</h1>
-  <div v-if="pending">
-    <p>Loading...</p>
-  </div>
-  <div v-else class="meal-container">
-    <div v-for="meal in filteredMeals" :key="meal.idMeal" class="meal-item" @click="clickDetail(meal.idMeal)">
-      <img :src="meal.strMealThumb" :alt="meal.strMeal" loading="lazy">
-      {{ meal.strMeal }}
+  <div class="container">
+    <div v-if="pending">
+      <p>Loading...</p>
+    </div>
+    <div v-else-if="filteredMeals.length > 0">
+      <h1 class="text-2xl text-green-900 font-bold mb-4">List Recipes for {{ ingredient }}</h1>
+      <div class="flex flex-wrap gap-4">
+        <div v-for="meal in filteredMeals" :key="meal.idMeal" class="meal-item" @click="clickDetail(meal.idMeal)">
+          <img :src="meal.strMealThumb" :alt="meal.strMeal" loading="lazy">
+          {{ meal.strMeal }}
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <p class="text-center font-bold text-2xl text-green-900">Meal not found</p>
     </div>
   </div>
   <Teleport to="#search">

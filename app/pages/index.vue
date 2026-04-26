@@ -1,13 +1,20 @@
 <template>
-  <h1>List ingredients</h1>
-  <div v-if="pending">
-    <p>Loading...</p>
-  </div>
-  <div v-else class="ingredient-container">
-    <div v-for="ingredient in filteredIngredients" :key="ingredient.idIngredient" class="ingredient-item"
-      @click="clickDetail(ingredient.strIngredient)">
-      <img :src="ingredient.strThumb" :alt="ingredient.strIngredient" loading="lazy">
-      {{ ingredient.strIngredient }}
+  <div class="container">
+    <div v-if="pending">
+      <p>Loading...</p>
+    </div>
+    <div v-else-if="filteredIngredients.length > 0">
+      <h1 class="text-2xl text-green-900 font-bold mb-4">List Ingredients</h1>
+      <div class="flex flex-row flex-wrap gap-4">
+        <div v-for="ingredient in filteredIngredients" :key="ingredient.idIngredient" class="ingredient-item"
+          @click="clickDetail(ingredient.strIngredient)">
+          <img :src="ingredient.strThumb" :alt="ingredient.strIngredient" loading="lazy">
+          {{ ingredient.strIngredient }}
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <p class="text-center font-bold text-2xl text-green-900">Ingredient not found</p>
     </div>
   </div>
   <NuxtLink to="/detail-ingredients">

@@ -9,20 +9,15 @@ header {
 }
 
 .search {
-    @apply border border-gray-300 px-4 py-2 rounded-md;
+    @apply bg-white border border-gray-300 px-4 py-2 rounded-md;
 }
 
 .search-input {
     @apply border-none outline-none;
 }
 
-.ingredient-container,
-.meal-container,
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    @apply py-4 px-8 mx-auto max-w-[1400px] flex flex-wrap;
+    @apply py-4 px-8 mx-auto max-w-[1400px];
 }
 
 .ingredient-item,
