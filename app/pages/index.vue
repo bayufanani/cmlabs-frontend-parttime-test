@@ -22,9 +22,7 @@
   </NuxtLink>
 
   <Teleport to="#search">
-    <div class="search">
-      <input type="text" class="search-input" placeholder="Filter ingredients..." v-model="search">
-    </div>
+    <Filter v-model="search" />
   </Teleport>
 </template>
 

@@ -17,9 +17,7 @@
     </div>
   </div>
   <Teleport to="#search">
-    <div class="search">
-      <input type="text" class="search-input" placeholder="Filter meals..." v-model="search">
-    </div>
+    <Filter v-model="search" />
   </Teleport>
   <NuxtLink to="/detail-meals">
     Go to detail meals
