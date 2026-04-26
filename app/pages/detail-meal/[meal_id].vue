@@ -11,7 +11,10 @@
                         <span class="recipe-area !bg-teal-600 text-white">{{ recipe.strArea }}</span>
                     </div>
 
-                    <h1 class="recipe-title text-green-900">{{ recipe.strMeal }}</h1>
+                    <h1 class="recipe-title text-green-900 flex">{{ recipe.strMeal }}
+                        <img :src="recipe.isFavorite ? Loved : Love" alt="" class="size-12 ml-4 hover:cursor-pointer"
+                            @click.stop="loveThis(recipe.idMeal)">
+                    </h1>
                     <div class="tags flex flex-row gap-2 flex-wrap">
                         <span class="recipe-tag border border-orange-300 bg-orange-200"
                             v-for="tag in recipe.strTags?.split(',')" :key="tag">{{
@@ -50,19 +53,24 @@
 <script setup lang="ts">
 import type { ApiResponse } from '~/domains/api-response'
 import type { Recipe, RecipeIngredient } from '~/domains/recipe'
+import Loved from '~/assets/heart-fill.svg'
+import Love from '~/assets/heart.svg'
 
 const route = useRoute()
 const meal_id = route.params.meal_id
 const recipe = ref<Recipe | null>()
 const pending = ref(true)
+const localFavorite = localStorage.getItem("favourite")
+const favourite: string[] = localFavorite != null ? JSON.parse(localFavorite) : []
 const ingredients = computed<RecipeIngredient[]>(() => {
     let ingredientList: RecipeIngredient[] = []
     if (recipe.value == null || recipe.value == undefined) {
         return []
     }
+
     for (let i = 1; i <= 20; i++) {
-        const ingredientName = recipe.value["strIngredient" + i as keyof typeof recipe.value]
-        const ingredientAmount = recipe.value["strMeasure" + i as keyof typeof recipe.value]
+        const ingredientName = recipe.value["strIngredient" + i as keyof typeof recipe.value] as string
+        const ingredientAmount = recipe.value["strMeasure" + i as keyof typeof recipe.value] as string
         if (ingredientName == null || ingredientName == "") {
             continue
         }
@@ -77,7 +85,18 @@ const ingredients = computed<RecipeIngredient[]>(() => {
 onMounted(async () => {
     const { data: res, pending: loading } = await useFetch<ApiResponse<Recipe>>("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + meal_id)
     recipe.value = res.value?.meals[0]
+    recipe.value!.isFavorite = favourite.includes(recipe.value!.idMeal)
     pending.value = loading.value
     console.log(recipe.value)
 })
+
+function loveThis(id: string) {
+    if (favourite.includes(id)) {
+        favourite.splice(favourite.indexOf(id), 1)
+    } else {
+        favourite.push(id)
+    }
+    localStorage.setItem("favourite", JSON.stringify(favourite))
+    recipe.value!.isFavorite = !recipe.value!.isFavorite
+}
 </script>

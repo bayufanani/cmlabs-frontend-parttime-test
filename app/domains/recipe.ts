@@ -52,6 +52,7 @@ export interface Recipe {
     strImageSource: string;
     strCreativeCommonsConfirmed: string;
     dateModified: string;
+    isFavorite: boolean;
 }
 
 export interface RecipeIngredient {

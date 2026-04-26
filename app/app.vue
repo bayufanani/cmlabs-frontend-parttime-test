@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BookmarkIcon from '~/assets/bookmark.svg'
 function goToHome() {
   navigateTo("/")
 }
@@ -10,11 +11,6 @@ function goToHome() {
     </div>
     <div id="search">
 
-    </div>
-    <div class="menu">
-      <div class="menu-item">
-        <NuxtLink to="/">Resep Favorit</NuxtLink>
-      </div>
     </div>
   </header>
   <NuxtPage />
