@@ -9,7 +9,11 @@ header {
 }
 
 .search {
-    @apply bg-white border border-gray-300 px-4 py-2 rounded-md;
+    @apply bg-white border border-gray-300 px-4 py-2 rounded-md transition-all;
+}
+
+.search:has(.search-input:focus) {
+    @apply border-green-600;
 }
 
 .search-input {
