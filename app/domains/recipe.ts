@@ -53,3 +53,8 @@ export interface Recipe {
     strCreativeCommonsConfirmed: string;
     dateModified: string;
 }
+
+export interface RecipeIngredient {
+    ingredient: string;
+    measure: string;
+}
